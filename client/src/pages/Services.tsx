@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowRight, Sparkles, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 function ParticleCanvas() {
@@ -157,7 +157,7 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Link href={href}>
-      <a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
+      <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '1.5px solid rgba(255,255,255,0.8)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '1.5px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', opacity: isHovered ? 0.25 : 0, filter: 'blur(10px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
@@ -165,12 +165,12 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
           <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
-      </a>
+      </div>
     </Link>
   );
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -180,7 +180,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -192,7 +192,7 @@ const itemVariants = {
   }
 };
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, x: 80 },
   visible: {
     opacity: 1,
@@ -206,6 +206,32 @@ const imageVariants = {
 };
 
 export default function Services() {
+  // Handle smooth scroll to hash on mount or hash change
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        // Reduced timeout to almost nothing for "instant" feel
+        setTimeout(() => {
+          const element = document.querySelector(hash);
+          if (element) {
+            // Using auto instead of smooth for "turant" navigation as requested
+            element.scrollIntoView({ behavior: 'auto', block: 'start' });
+          }
+        }, 0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    };
+
+    scrollToHash();
+    window.addEventListener('popstate', scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.removeEventListener('popstate', scrollToHash);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
   const services = [
     {
       id: 1,
@@ -372,7 +398,7 @@ export default function Services() {
             const Icon = service.icon;
             // Define a customized ref for scroll tracing
             return (
-              <motion.div key={service.id}
+              <motion.div key={service.id} id={`service-${service.id}`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.25 }}
@@ -502,14 +528,12 @@ export default function Services() {
               Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
             </motion.p>
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
-              <Link href="/contact">
-                <a className="shine-btn"
-                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '16px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
-                >
-                  Schedule a Consultation <ArrowRight size={20} style={{ marginLeft: '12px' }} />
-                </a>
+              <Link href="/contact" className="shine-btn"
+                style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '16px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
+                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+              >
+                Schedule a Consultation <ArrowRight size={20} style={{ marginLeft: '12px' }} />
               </Link>
             </motion.div>
           </motion.div>

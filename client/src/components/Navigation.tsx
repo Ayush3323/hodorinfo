@@ -8,42 +8,42 @@ const services = [
     icon: Cpu,
     label: 'Enterprise Software',
     desc: 'Custom platforms for complex workflows',
-    href: '/services',
+    href: '/services#service-1',
     color: '#00d4ff',
   },
   {
     icon: Bot,
     label: 'AI & Machine Learning',
     desc: 'Intelligent agents & predictive models',
-    href: '/services',
+    href: '/services#service-2',
     color: '#a78bfa',
   },
   {
     icon: Plane,
     label: 'Drone Technology',
     desc: 'Industrial aerial systems & monitoring',
-    href: '/services',
+    href: '/services#service-3',
     color: '#34d399',
   },
   {
     icon: Shield,
     label: 'Cybersecurity',
     desc: 'Aerospace & drone threat protection',
-    href: '/services',
+    href: '/services#service-4',
     color: '#fb923c',
   },
   {
     icon: BarChart3,
     label: 'Data Science',
     desc: 'Advanced analytics & data engineering',
-    href: '/services',
+    href: '/services#service-5',
     color: '#f472b6',
   },
   {
     icon: Zap,
     label: 'Digital Transformation',
     desc: 'End-to-end modernization consulting',
-    href: '/services',
+    href: '/services#service-6',
     color: '#facc15',
   },
 ];
@@ -148,45 +148,43 @@ export default function Navigation() {
             style={{ height: '84px' }}
           >
             {/* ── Logo ─────────────────────────────────────────────────── */}
-            <Link href="/">
-              <a className="flex items-center group" style={{ gap: '10px', textDecoration: 'none' }}>
-                <div
-                  className="flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #d946ef 100%)',
-                    boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
-                    flexShrink: 0,
-                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontWeight: 800,
-                      color: '#ffffff',
-                      fontSize: '20px',
-                      lineHeight: 1,
-                      transition: 'none',
-                    }}
-                  >
-                    H
-                  </span>
-                </div>
+            <Link href="/" className="flex items-center group" style={{ gap: '10px', textDecoration: 'none' }}>
+              <div
+                className="flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
+                style={{
+                  width: '44px',
+                  height: '44px',
+                  background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #d946ef 100%)',
+                  boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
+                  flexShrink: 0,
+                  transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                }}
+              >
                 <span
                   style={{
                     fontWeight: 800,
                     color: '#ffffff',
-                    fontSize: '22px',
-                    letterSpacing: '0.01em',
+                    fontSize: '20px',
                     lineHeight: 1,
-                    textTransform: 'uppercase',
+                    transition: 'none',
                   }}
-                  className="hidden sm:inline font-display"
                 >
-                  HodorInfo
+                  H
                 </span>
-              </a>
+              </div>
+              <span
+                style={{
+                  fontWeight: 800,
+                  color: '#ffffff',
+                  fontSize: '22px',
+                  letterSpacing: '0.01em',
+                  lineHeight: 1,
+                  textTransform: 'uppercase',
+                }}
+                className="hidden sm:inline font-display"
+              >
+                HodorInfo
+              </span>
             </Link>
 
             {/* ── Desktop Links ────────────────────────────────────────── */}
@@ -204,34 +202,42 @@ export default function Navigation() {
                       onMouseEnter={() => { handleMegaEnter(); setHoveredLink(link.label); }}
                       onMouseLeave={() => { handleMegaLeave(); setHoveredLink(null); }}
                     >
-                      <button
-                        ref={megaTriggerRef}
-                        onClick={() => setMegaOpen((p) => !p)}
+                    <a
+                      ref={megaTriggerRef as any}
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.history.pushState({}, '', link.href);
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                        setMegaOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'auto' });
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        padding: '10px 12px',
+                        borderRadius: '8px',
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        color: '#ffffff',
+                        background: megaOpen ? 'rgba(0,212,255,0.08)' : 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        textDecoration: 'none',
+                        transition: 'background 0.2s, color 0.2s',
+                        letterSpacing: '0.01em',
+                      }}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        size={14}
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '5px',
-                          padding: '10px 12px',
-                          borderRadius: '8px',
-                          fontSize: '18px',
-                          fontWeight: 500,
-                          color: '#ffffff',
-                          background: megaOpen ? 'rgba(0,212,255,0.08)' : 'transparent',
-                          border: 'none',
-                          cursor: 'pointer',
-                          transition: 'background 0.2s, color 0.2s',
-                          letterSpacing: '0.01em',
+                          transform: megaOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s',
                         }}
-                      >
-                        {link.label}
-                        <ChevronDown
-                          size={14}
-                          style={{
-                            transform: megaOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                            transition: 'transform 0.2s',
-                          }}
-                        />
-                      </button>
+                      />
+                    </a>
                       <span
                         style={{
                           display: 'block',
@@ -355,33 +361,32 @@ export default function Navigation() {
 
             {/* ── CTA Button ───────────────────────────────────────────── */}
             <div className="hidden md:block">
-              <Link href="/contact">
-                <a
-                  className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 hover:scale-105 group"
+              <Link
+                href="/contact"
+                className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 hover:scale-105 group"
+                style={{
+                  background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
+                  boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)',
+                }}
+                onMouseEnter={(e: any) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    '0 0 32px rgba(0, 212, 255, 0.55)';
+                }}
+                onMouseLeave={(e: any) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    '0 0 20px rgba(0, 212, 255, 0.3)';
+                }}
+              >
+                {/* Shimmer sweep */}
+                <span
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500"
                   style={{
-                    background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
-                    boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)',
+                    background:
+                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow =
-                      '0 0 32px rgba(0, 212, 255, 0.55)';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow =
-                      '0 0 20px rgba(0, 212, 255, 0.3)';
-                  }}
-                >
-                  {/* Shimmer sweep */}
-                  <span
-                    className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500"
-                    style={{
-                      background:
-                        'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
-                    }}
-                  />
-                  Get Started
-                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                </a>
+                />
+                Get Started
+                <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
@@ -447,9 +452,20 @@ export default function Navigation() {
                       href={svc.href}
                       onClick={(e) => {
                         e.preventDefault();
+                        const wasAlreadyOnServices = window.location.pathname === '/services';
                         window.history.pushState({}, '', svc.href);
                         window.dispatchEvent(new PopStateEvent('popstate'));
                         setMegaOpen(false);
+                        
+                        // If we were already on the services page, the hash change alone might not trigger the scroll
+                        // so we manually trigger it if needed
+                        if (wasAlreadyOnServices && svc.href.includes('#')) {
+                          const hash = svc.href.split('#')[1];
+                          const element = document.getElementById(hash);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'auto', block: 'start' });
+                          }
+                        }
                       }}
                       style={{
                         position: 'relative',
@@ -614,14 +630,14 @@ export default function Navigation() {
                         {services.map((svc) => {
                           const Icon = svc.icon;
                           return (
-                            <Link key={svc.label} href={svc.href}>
-                              <a
-                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-[#8a8a8a] hover:text-[#e0e0e0] transition-colors"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                <Icon size={14} style={{ color: svc.color }} />
-                                {svc.label}
-                              </a>
+                            <Link
+                              key={svc.label}
+                              href={svc.href}
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-[#8a8a8a] hover:text-[#e0e0e0] transition-colors"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              <Icon size={14} style={{ color: svc.color }} />
+                              {svc.label}
                             </Link>
                           );
                         })}
@@ -644,35 +660,34 @@ export default function Navigation() {
                   {link.label}
                 </a>
               ) : (
-                <Link key={link.label} href={link.href}>
-                  <a
-                    className="px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200"
-                    style={{
-                      color: active ? '#00d4ff' : '#a0a0a0',
-                      background: active ? 'rgba(0, 212, 255, 0.06)' : 'transparent',
-                      animationDelay: `${i * 40}ms`,
-                    }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </a>
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+                  style={{
+                    color: active ? '#00d4ff' : '#a0a0a0',
+                    background: active ? 'rgba(0, 212, 255, 0.06)' : 'transparent',
+                    animationDelay: `${i * 40}ms`,
+                  }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
                 </Link>
               );
             })}
 
             {/* Mobile CTA */}
-            <Link href="/contact">
-              <a
-                className="mt-3 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 active:scale-95"
-                style={{
-                  background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
-                  boxShadow: '0 0 24px rgba(0, 212, 255, 0.3)',
-                }}
-                onClick={() => setIsOpen(false)}
-              >
-                Get Started
-                <ArrowRight size={14} />
-              </a>
+            <Link
+              href="/contact"
+              className="mt-3 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 active:scale-95"
+              style={{
+                background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
+                boxShadow: '0 0 24px rgba(0, 212, 255, 0.3)',
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              Get Started
+              <ArrowRight size={14} />
             </Link>
           </div>
         </div>

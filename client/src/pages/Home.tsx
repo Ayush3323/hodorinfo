@@ -194,7 +194,7 @@ function MagneticButton({ href, primary, label }: { href: string; primary: boole
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Link href={href}>
-      <a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '16px 36px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '18px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
+      <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '16px 36px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '18px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '2px solid rgba(255,255,255,0.9)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '2px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', opacity: isHovered ? 0.3 : 0, filter: 'blur(12px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
@@ -202,7 +202,7 @@ function MagneticButton({ href, primary, label }: { href: string; primary: boole
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
           <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
-      </a>
+      </div>
     </Link>
   );
 }
@@ -227,6 +227,34 @@ const industries = [
   { name: 'Government & Defense', icon: '🏛️' },
 ];
 
+function MouseTrail() {
+  const [points, setPoints] = useState<{ x: number; y: number; id: number }[]>([]);
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      setPoints((prev) => [...prev.slice(-15), { x: e.clientX, y: e.clientY, id: Math.random() + Date.now() }]);
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+  return (
+    <div className="fixed inset-0 pointer-events-none z-50">
+      {points.map((p, i) => (
+        <div key={p.id} style={{ position: 'fixed', left: p.x, top: p.y, width: '6px', height: '6px', background: '#00d4ff', borderRadius: '50%', opacity: (i / points.length) * 0.5, transform: `scale(${i / points.length})`, filter: 'blur(2px)', transition: 'all 0.1s ease' }} />
+      ))}
+    </div>
+  );
+}
+
+function FloatingAccents() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {[...Array(6)].map((_, i) => (
+        <div key={i} className="absolute animate-pulse" style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: '150px', height: '150px', background: 'radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%)', filter: 'blur(40px)', animationDuration: `${3 + Math.random() * 5}s`, animationDelay: `${Math.random() * 2}s` }} />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0e27] relative overflow-x-hidden">
@@ -234,18 +262,17 @@ export default function Home() {
         @keyframes animatedTextGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
         @keyframes fadeUpReveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #ff3dff, #b026ff, #00d4ff, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
-        .reveal-delay-1 { animation: fadeUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.1s; }
-        .reveal-delay-2 { animation: fadeUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.3s; }
-        .reveal-delay-3 { animation: fadeUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.5s; }
-        .reveal-delay-4 { animation: fadeUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.7s; }
       `}</style>
 
       {/* GLOBAL BACKGROUND EFFECTS */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <StarField />
         <HorizonGlow />
+        <FloatingAccents />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0e27]/40 to-[#0a0e27]" />
       </div>
+
+      <MouseTrail />
 
       <div className="relative z-10">
         <Navigation />
@@ -259,16 +286,16 @@ export default function Home() {
           <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
             <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ flex: '1 1 600px', maxWidth: '1050px' }}>
-                <div className="reveal-delay-1"><PulsingBadge /></div>
-                <h1 className="reveal-delay-2" style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}>
+                <div><PulsingBadge /></div>
+                <h1 style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>Transform Any Industry</span>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
                 </h1>
-                <p className="reveal-delay-3" style={{ fontSize: '20px', color: '#ffffff', lineHeight: 1.8, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}>
+                <p style={{ fontSize: '20px', color: '#ffffff', lineHeight: 1.8, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}>
                   HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
                 </p>
-                <div className="reveal-delay-4" style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
                   <MagneticButton label="Get started" href="/contact" primary={true} />
                   <MagneticButton label="Our Services" href="/services" primary={false} />
                 </div>
@@ -283,8 +310,8 @@ export default function Home() {
         {/* CORE COMPETENCIES SECTION - MAYDIV STYLE (Static Frames + Moving Content) */}
         <section style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
           <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 5%' }}>
-            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
+            <div style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
               <p style={{ fontSize: '18px', color: 'rgba(224,224,224,0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Six interconnected technology pillars enabling industry transformation</p>
             </div>
 
@@ -297,17 +324,29 @@ export default function Home() {
         {/* INDUSTRIES SECTION */}
         <section style={{ padding: '100px 0' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '14px' }}>Industries</div>
-              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
+              <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
               <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px', perspective: '1000px' }}>
               {industries.map((ind, i) => (
                 <div key={i}
-                  style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.25s ease', display: 'flex', alignItems: 'center', gap: '12px' }}
-                  onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-4px)'; el.style.background = 'rgba(0,212,255,0.06)'; el.style.borderColor = 'rgba(0,212,255,0.3)'; el.style.boxShadow = '0 12px 32px rgba(0,212,255,0.12)'; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.background = 'rgba(255,255,255,0.03)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = 'none'; }}
+                  style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', display: 'flex', alignItems: 'center', gap: '12px', position: 'relative', overflow: 'hidden' }}
+                  onMouseEnter={(e) => { 
+                    const el = e.currentTarget as HTMLElement; 
+                    el.style.transform = 'translateY(-10px) scale(1.02)'; 
+                    el.style.background = 'rgba(0,212,255,0.1)'; 
+                    el.style.borderColor = 'rgba(0,212,255,0.4)'; 
+                    el.style.boxShadow = '0 20px 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.2)'; 
+                  }}
+                  onMouseLeave={(e) => { 
+                    const el = e.currentTarget as HTMLElement; 
+                    el.style.transform = 'translateY(0) scale(1)'; 
+                    el.style.background = 'rgba(255,255,255,0.03)'; 
+                    el.style.borderColor = 'rgba(255,255,255,0.08)'; 
+                    el.style.boxShadow = 'none'; 
+                  }}
                 >
                   <span style={{ fontSize: '24px', flexShrink: 0 }}>{ind.icon}</span>
                   <span style={{ fontSize: '14px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
@@ -316,11 +355,13 @@ export default function Home() {
               ))}
             </div>
             <div style={{ textAlign: 'center', marginTop: '48px' }}>
-              <Link href="/industries">
-                <a style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.gap = '12px'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.gap = '8px'; }}
-                >View All Industries <ArrowRight size={16} /></a>
+              <Link 
+                href="/industries"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
+                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '12px'; }}
+                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '8px'; }}
+              >
+                View All Industries <ArrowRight size={16} />
               </Link>
             </div>
           </div>
@@ -346,14 +387,14 @@ export default function Home() {
                 Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
-                <Link href="/contact">
-                  <a className="shine-btn"
-                    style={{ padding: '16px 40px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '15px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px', position: 'relative', overflow: 'hidden' }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
-                  >
-                    Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
-                  </a>
+                <Link
+                  href="/contact"
+                  className="shine-btn"
+                  style={{ padding: '16px 40px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '15px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px', position: 'relative', overflow: 'hidden' }}
+                  onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                  onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                >
+                  Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
                 </Link>
               </div>
             </div>

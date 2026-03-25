@@ -53,10 +53,8 @@ export default function Footer() {
               <ul className="space-y-4 text-sm md:text-base font-medium">
                 {['Home', 'Services', 'Industries', 'About'].map((item) => (
                   <li key={item}>
-                    <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
-                      <a className="text-white/40 hover:text-white transition-all hover:translate-x-1 inline-block">
-                        {item}
-                      </a>
+                    <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className="text-white/40 hover:text-white transition-all hover:translate-x-1 inline-block">
+                      {item}
                     </Link>
                   </li>
                 ))}
@@ -68,7 +66,7 @@ export default function Footer() {
               <h4 className="text-white font-bold text-sm md:text-base uppercase tracking-[0.2em] mb-8">Resources</h4>
               <ul className="space-y-4 text-sm md:text-base font-medium text-white/40">
                 <li><a href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Blog</a></li>
-                <li><Link href="/contact"><a className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</a></Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</Link></li>
                 <li><a href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-white transition-all hover:translate-x-1 inline-block">Terms of Service</a></li>
               </ul>
