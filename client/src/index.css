@@ -44,12 +44,12 @@
 }
 
 :root {
-  --primary: #00d4ff;
+  --primary: #6367FF;
   --primary-foreground: #0a0e27;
-  --sidebar-primary: #00d4ff;
+  --sidebar-primary: #6367FF;
   --sidebar-primary-foreground: #0a0e27;
 
-  --chart-1: #00d4ff;
+  --chart-1: #6367FF;
   --chart-2: #ff006e;
   --chart-3: #ffbe0b;
   --chart-4: #8338ec;
@@ -67,7 +67,7 @@
   --secondary-foreground: #e0e0e0;
   --muted: #2d3561;
   --muted-foreground: #a0a0a0;
-  --accent: #00d4ff;
+  --accent: #6367FF;
   --accent-foreground: #0a0e27;
   --destructive: #ff3333;
   --destructive-foreground: #fafafa;
@@ -76,10 +76,10 @@
   --ring: #00d4ff;
   --sidebar: #0a0e27;
   --sidebar-foreground: #e0e0e0;
-  --sidebar-accent: #00d4ff;
+  --sidebar-accent: #6367FF;
   --sidebar-accent-foreground: #0a0e27;
   --sidebar-border: #2d3561;
-  --sidebar-ring: #00d4ff;
+  --sidebar-ring: #6367FF;
 }
 
 @layer base {
@@ -147,13 +147,13 @@
 
   .accent-line {
     @apply h-1;
-    background: linear-gradient(to right, #00d4ff, #ff006e, #ffbe0b);
+    background: linear-gradient(to right, #6367FF, #8494FF);
   }
 
   .btn-premium {
     @apply px-6 py-3 font-semibold rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
     color: #0a0e27;
-    background: linear-gradient(135deg, #00d4ff, #00a8cc);
+    background: linear-gradient(135deg, #6367FF, #8494FF);
   }
 
   .service-card {
@@ -162,12 +162,12 @@
   }
 
   .service-card:hover {
-    border-color: #00d4ff;
+    border-color: #6367FF;
   }
 
   .tech-accent {
     font-family: 'JetBrains Mono', monospace;
-    color: #00d4ff;
+    color: #6367FF;
     @apply font-semibold;
   }
 
@@ -193,4 +193,33 @@
     position: relative;
     z-index: 1;
   }
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes rotateClockwise {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes orbitOval {
+  from { transform: translate(-50%, -50%) rotateX(60deg) rotateY(15deg) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotateX(60deg) rotateY(15deg) rotate(360deg); }
+}
+
+@keyframes orbitDot {
+  from { transform: rotate(0deg) translateX(50%); }
+  to { transform: rotate(360deg) translateX(50%); }
+}
+@keyframes rotateFull {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

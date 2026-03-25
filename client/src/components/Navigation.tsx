@@ -123,7 +123,7 @@ export default function Navigation() {
         className="fixed top-0 left-0 h-[2px] z-[60] transition-all duration-150"
         style={{
           width: `${scrollProgress}%`,
-          background: 'linear-gradient(90deg, #00d4ff, #a78bfa, #00d4ff)',
+          background: 'linear-gradient(90deg, #6367FF, #8494FF, #6367FF)',
           backgroundSize: '200% 100%',
           animation: 'shimmer 2s linear infinite',
           opacity: scrollProgress > 2 ? 1 : 0,
@@ -154,7 +154,7 @@ export default function Navigation() {
                 style={{
                   width: '44px',
                   height: '44px',
-                  background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #d946ef 100%)',
+                  background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
                   boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
                   flexShrink: 0,
                   transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -248,7 +248,7 @@ export default function Navigation() {
                           right: '16px',
                           height: '2px',
                           borderRadius: '99px',
-                          background: 'linear-gradient(90deg, #00d4ff, #a78bfa)',
+                          background: 'linear-gradient(90deg, #6367FF, #8494FF)',
                           transform: showLine ? 'scaleX(1)' : 'scaleX(0)',
                           transformOrigin: 'left center',
                           opacity: showLine ? 1 : 0,
@@ -298,7 +298,7 @@ export default function Navigation() {
                           right: '14px',
                           height: '2px',
                           borderRadius: '99px',
-                          background: 'linear-gradient(90deg, #00d4ff, #a78bfa)',
+                          background: 'linear-gradient(90deg, #6367FF, #8494FF)',
                           transform: hovered ? 'scaleX(1)' : 'scaleX(0)',
                           transformOrigin: 'left center',
                           opacity: hovered ? 1 : 0,
@@ -366,7 +366,7 @@ export default function Navigation() {
                 href="/contact"
                 className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 hover:scale-105 group"
                 style={{
-                  background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
+                  background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
                   boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)',
                 }}
                 onMouseEnter={(e: any) => {
@@ -682,7 +682,7 @@ export default function Navigation() {
               href="/contact"
               className="mt-3 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 active:scale-95"
               style={{
-                background: 'linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%)',
+                background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
                 boxShadow: '0 0 24px rgba(0, 212, 255, 0.3)',
               }}
               onClick={() => setIsOpen(false)}

@@ -25,7 +25,7 @@ export default function MouseTrail() {
             top: p.y,
             width: '6px',
             height: '6px',
-            background: '#00d4ff',
+            background: '#6367FF',
             borderRadius: '50%',
             opacity: (i / points.length) * 0.5,
             transform: `scale(${i / points.length})`,

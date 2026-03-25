@@ -148,7 +148,7 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           inset: -1.5px;
           padding: 1.5px;
           border-radius: 35px;
-          background: linear-gradient(90deg, #ff72e1, #c084fc, #818cf8, #38bdf8, #c084fc, #ff72e1);
+          background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff);
           background-size: 300% 100%;
           animation: slideGradBorder 8s linear infinite;
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -203,13 +203,7 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
         }
 
         h3 { 
-          background: linear-gradient(90deg, #ff72e1, #c084fc, #818cf8, #38bdf8, #c084fc, #ff72e1);
-          background-size: 300% 100%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: slideGradText 8s linear infinite;
-          
+          color: #ffffff;
           font-size: 1.4rem; 
           margin-bottom: 14px; 
           font-weight: 700; 

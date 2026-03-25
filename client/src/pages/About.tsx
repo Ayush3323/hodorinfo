@@ -78,8 +78,8 @@ function ParticleCanvas() {
         }
 
         p.energy = Math.max(0, p.energy - 0.015);
-        const r = Math.floor(0 + (255 - 0) * p.energy);
-        const g = Math.floor(212 + (61 - 212) * p.energy);
+        const r = Math.floor(99 + 33 * p.energy);
+        const g = Math.floor(103 + 45 * p.energy);
         const b = 255;
 
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -99,8 +99,8 @@ function ParticleCanvas() {
           const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
           if (d < 130) {
             const avgEnergy = (pts[i].energy + pts[j].energy) / 2;
-            const r = Math.floor(0 + (255 - 0) * avgEnergy);
-            const g = Math.floor(212 + (61 - 212) * avgEnergy);
+            const r = Math.floor(99 + 33 * avgEnergy);
+            const g = Math.floor(103 + 45 * avgEnergy);
             const b = 255;
             ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
             ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - d / 130) + avgEnergy * 0.3})`;
@@ -137,23 +137,23 @@ function StarField() {
 function HorizonGlow() {
   return (
     <div style={{ position: 'absolute', top: '0', left: '-10%', right: '-10%', height: '40%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at top, rgba(0, 212, 255, 0.15) 0%, rgba(0, 168, 204, 0.05) 40%, transparent 75%)', filter: 'blur(100px)' }} />
+      <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at top, rgba(99, 103, 255, 0.15) 0%, rgba(132, 148, 255, 0.05) 40%, transparent 75%)', filter: 'blur(100px)' }} />
     </div>
   );
 }
 
 function PulsingBadge({ text }: { text: string }) {
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '6px 16px', borderRadius: '100px', background: 'rgba(0, 212, 255, 0.06)', border: '1px solid rgba(0, 212, 255, 0.15)', marginBottom: '24px', backdropFilter: 'blur(8px)' }}>
-      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00d4ff', position: 'relative' }}>
-        <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', background: '#00d4ff', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '6px 16px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.06)', border: '1px solid rgba(99, 103, 255, 0.15)', marginBottom: '24px', backdropFilter: 'blur(8px)' }}>
+      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#6367FF', position: 'relative' }}>
+        <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', background: '#6367FF', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
       </div>
-      <span style={{ fontSize: '12px', fontWeight: 600, color: '#00d4ff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{text}</span>
+      <span style={{ fontSize: '12px', fontWeight: 600, color: '#6367FF', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{text}</span>
     </div>
   );
 }
 
-function BackgroundGlow({ color = 'rgba(0, 212, 255, 0.1)', size = '400px', top, left, right, bottom }: any) {
+function BackgroundGlow({ color = 'rgba(99, 103, 255, 0.1)', size = '400px', top, left, right, bottom }: any) {
   return (
     <motion.div
       animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
@@ -173,9 +173,9 @@ function BackgroundGlow({ color = 'rgba(0, 212, 255, 0.1)', size = '400px', top,
 }
 
 const BRAND_GRADIENTS = {
-  primary: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)',
-  premium: 'linear-gradient(90deg, #ffffff, #ff3dff, #b026ff, #00d4ff, #ffffff)',
-  cta: 'linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #4f46e5 100%)'
+  primary: 'linear-gradient(90deg, #6367FF, #8494FF)',
+  premium: 'linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff)',
+  cta: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)'
 };
 
 function MagneticButton({ href, label }: { href: string; label: string }) {
@@ -184,11 +184,11 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
     <Link href={href}>
       <a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '1.5px solid rgba(255,255,255,0.8)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
-        <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '1.5px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
-        <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', opacity: isHovered ? 0.25 : 0, filter: 'blur(10px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
+        <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '1.5px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
+        <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', opacity: isHovered ? 0.25 : 0, filter: 'blur(10px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
         <span style={{ position: 'relative' }}>
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
-          <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
+          <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
       </a>
     </Link>
@@ -223,7 +223,7 @@ export default function About() {
       icon: Lightbulb,
       title: 'Innovation',
       description: 'We push boundaries and embrace emerging technologies to solve tomorrow\'s challenges today.',
-      color: '#00d4ff',
+      color: '#6367FF',
     },
     {
       icon: Target,
@@ -250,7 +250,7 @@ export default function About() {
       <style>{`
         @keyframes animatedTextGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
         @keyframes pulse-ping { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
-        .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #ff3dff, #b026ff, #00d4ff, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
+        .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
       `}</style>
 
@@ -515,7 +515,7 @@ export default function About() {
                   style={{ padding: '48px 40px', borderRadius: '32px', transformStyle: 'preserve-3d', cursor: 'pointer', textAlign: 'center', width: '100%', maxWidth: '380px' }}
                 >
                   <motion.div style={{ transformStyle: 'preserve-3d' }} whileHover={{ translateZ: 80, rotateX: -35 }}>
-                    <div style={{ fontSize: '40px', marginBottom: '24px', opacity: 0.8 }}><Sparkles size={32} color="#00d4ff" /></div>
+                    <div style={{ fontSize: '40px', marginBottom: '24px', opacity: 0.8 }}><Sparkles size={32} color="#6367FF" /></div>
                     <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '18px' }}>{item.title}</h3>
                     <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.7 }}>{item.description}</p>
                   </motion.div>
@@ -533,7 +533,7 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #4f46e5 100%)', padding: '64px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(139, 92, 246, 0.25)' }}
+            style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '64px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}
           >
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', position: 'relative', zIndex: 1 }}>

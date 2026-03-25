@@ -95,8 +95,8 @@ function ParticleCanvas() {
         }
 
         p.energy = Math.max(0, p.energy - 0.015);
-        const r = Math.floor(0 + (255 - 0) * p.energy);
-        const g = Math.floor(212 + (61 - 212) * p.energy);
+        const r = Math.floor(99 + 33 * p.energy);
+        const g = Math.floor(103 + 45 * p.energy);
         const b = 255;
 
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -116,8 +116,8 @@ function ParticleCanvas() {
           const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
           if (d < 130) {
             const avgEnergy = (pts[i].energy + pts[j].energy) / 2;
-            const r = Math.floor(0 + (255 - 0) * avgEnergy);
-            const g = Math.floor(212 + (61 - 212) * avgEnergy);
+            const r = Math.floor(99 + 33 * avgEnergy);
+            const g = Math.floor(103 + 45 * avgEnergy);
             const b = 255;
             ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
             ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - d / 130) + avgEnergy * 0.3})`;
@@ -144,8 +144,8 @@ function ParticleCanvas() {
 function StarField() {
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-      {[...Array(40)].map((_, i) => (
-        <div key={i} style={{ position: 'absolute', top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: `${Math.random() * 2 + 1}px`, height: `${Math.random() * 2 + 1}px`, background: '#ffffff', borderRadius: '50%', opacity: Math.random() * 1.5 + 0.1, boxShadow: '0 0 10px #ffffff' }} className="animate-pulse" />
+      {[...Array(30)].map((_, i) => (
+        <div key={i} style={{ position: 'absolute', top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: `${Math.random() * 2 + 1}px`, height: `${Math.random() * 2 + 1}px`, background: '#ffffff', borderRadius: '50%', opacity: Math.random() * 1.2 + 0.1, boxShadow: '0 0 10px #ffffff' }} className="animate-pulse" />
       ))}
     </div>
   );
@@ -154,30 +154,43 @@ function StarField() {
 function HorizonGlow() {
   return (
     <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', right: '-10%', height: '60%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.2) 0%, rgba(0, 168, 204, 0.08) 40%, transparent 75%)', filter: 'blur(120px)' }} />
-      <div style={{ position: 'absolute', bottom: '-10%', left: '20%', width: '70%', height: '90%', background: 'radial-gradient(circle, rgba(155, 93, 245, 0.12) 0%, transparent 70%)', filter: 'blur(140px)' }} />
+      <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at bottom, rgba(99, 103, 255, 0.2) 0%, rgba(132, 148, 255, 0.08) 40%, transparent 75%)', filter: 'blur(120px)' }} />
+      <div style={{ position: 'absolute', bottom: '-10%', left: '20%', width: '70%', height: '90%', background: 'radial-gradient(circle, rgba(99, 103, 255, 0.12) 0%, transparent 70%)', filter: 'blur(140px)' }} />
     </div>
   );
 }
 
 function PulsingBadge() {
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(0, 212, 255, 0.08)', border: '1px solid rgba(0, 212, 255, 0.2)', marginBottom: '32px', backdropFilter: 'blur(8px)' }}>
-      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00d4ff', position: 'relative' }}>
-        <div style={{ position: 'absolute', inset: -4, borderRadius: '50%', background: '#00d4ff', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.08)', border: '1px solid rgba(99, 103, 255, 0.2)', marginBottom: '32px', backdropFilter: 'blur(8px)' }}>
+      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6367FF', position: 'relative' }}>
+        <div style={{ position: 'absolute', inset: -4, borderRadius: '50%', background: '#6367FF', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
       </div>
-      <span style={{ fontSize: '14px', fontWeight: 600, color: '#00d4ff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Next-Level Enterprise Technology</span>
+      <span style={{ fontSize: '14px', fontWeight: 600, color: '#6367FF', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Next-Level Enterprise Technology</span>
     </div>
   );
 }
 
 function HeroImage() {
   return (
-    <div style={{ transition: 'transform 0.1s ease-out', width: '100%', maxWidth: '820px', margin: '0 auto' }}>
-      <div style={{ position: 'relative', width: '100%', animation: 'heroFloat 5s ease-in-out infinite' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: '120%', border: '1px solid rgba(0, 212, 255, 0.1)', borderRadius: '50%', animation: 'rotateClockwise 30s linear infinite', zIndex: 1 }} />
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '135%', height: '135%', border: '1px dashed rgba(167, 139, 250, 0.1)', borderRadius: '50%', animation: 'rotateCounterClockwise 45s linear infinite', zIndex: 1 }} />
-        <div style={{ position: 'absolute', bottom: '-15%', left: '0%', right: '0%', height: '80%', background: 'radial-gradient(ellipse, rgba(155,93,245,0.3) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
+    <div style={{ transition: 'transform 0.1s ease-out', width: '100%', maxWidth: '1100px', margin: '0 auto' }}>
+      <div style={{ position: 'relative', width: '100%', animation: 'heroFloat 6s ease-in-out infinite' }}>
+        {/* Orbital Rings - 3D Perspective */}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(65deg) rotateY(15deg)', width: '140%', height: '140%', zIndex: 1, pointerEvents: 'none' }}>
+          <div style={{ width: '100%', height: '100%', border: '1px solid rgba(99, 103, 255, 0.2)', borderRadius: '50%', animation: 'rotateFull 25s linear infinite' }}>
+            <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%, -50%)', width: '10px', height: '100%', pointerEvents: 'none' }}>
+               <div style={{ width: '12px', height: '12px', background: '#6367FF', borderRadius: '50%', boxShadow: '0 0 20px #6367FF', animation: 'heroFloat 3s ease-in-out infinite' }} />
+            </div>
+          </div>
+        </div>
+
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(-45deg) rotateY(-25deg)', width: '120%', height: '120%', zIndex: 1, pointerEvents: 'none' }}>
+           <div style={{ width: '100%', height: '100%', border: '1px dashed rgba(132, 148, 255, 0.15)', borderRadius: '50%', animation: 'rotateFull 35s linear infinite reverse' }} />
+        </div>
+
+        {/* Shadow Glow */}
+        <div style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.2) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
+        
         <div style={{ position: 'relative', zIndex: 2, WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
           <div style={{ position: 'relative', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
             <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)', maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)' }}>
@@ -197,11 +210,11 @@ function MagneticButton({ href, primary, label }: { href: string; primary: boole
     <Link href={href}>
       <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '16px 36px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '18px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '2px solid rgba(255,255,255,0.9)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
-        <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '2px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
-        <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', opacity: isHovered ? 0.3 : 0, filter: 'blur(12px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
+        <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '2px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
+        <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', opacity: isHovered ? 0.3 : 0, filter: 'blur(12px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
         <span style={{ position: 'relative' }}>
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
-          <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #ff3dff, #b026ff, #00d4ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
+          <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
       </div>
     </Link>
@@ -216,6 +229,58 @@ const services = [
   { icon: BarChart3, title: 'Data Science', desc: 'Extract insights and drive decisions with advanced analytics and data engineering.', color: '#f472b6', href: '/services#service-5' },
   { icon: Zap, title: 'Digital Transformation', desc: 'Guide organizations through comprehensive modernization and technology integration.', color: '#facc15', href: '/services#service-6' },
 ];
+
+function IndustryCard({ name, icon, index }: { name: string; icon: string; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        position: 'relative',
+        padding: '36px 32px',
+        borderRadius: '28px',
+        background: isHovered ? 'rgba(99, 103, 255, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+        border: '1px solid',
+        borderColor: isHovered ? 'rgba(99, 103, 255, 0.45)' : 'rgba(255, 255, 255, 0.08)',
+        boxShadow: isHovered ? '0 20px 40px rgba(99, 103, 255, 0.2), inset 0 0 25px rgba(99, 103, 255, 0.25)' : 'none',
+        cursor: 'pointer',
+        overflow: 'hidden',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+      } as any}
+      whileHover={{ y: -10 }}
+    >
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <motion.div 
+          style={{ 
+            fontSize: '32px', 
+            background: 'rgba(99, 103, 255, 0.05)', 
+            width: '64px', 
+            height: '64px', 
+            borderRadius: '18px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            border: '1px solid rgba(99, 103, 255, 0.1)',
+            flexShrink: 0
+          }}
+        >
+          {icon}
+        </motion.div>
+        
+        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#ffffff', margin: 0 }}>{name}</h3>
+          <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(99, 103, 255, 0.5)', transition: 'transform 0.3s ease', transform: isHovered ? 'translateX(5px)' : 'none' }} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 const industries = [
   { name: 'Logistics & Supply Chain', icon: '🚚' },
@@ -245,7 +310,7 @@ export default function Home() {
       <style>{`
         @keyframes animatedTextGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
         @keyframes fadeUpReveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #ff3dff, #b026ff, #00d4ff, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
+        .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
       `}</style>
 
       {/* GLOBAL BACKGROUND EFFECTS */}
@@ -311,39 +376,19 @@ export default function Home() {
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
               <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px', perspective: '1000px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', perspective: '1500px' }}>
               {industries.map((ind, i) => (
-                <div key={i}
-                  style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', display: 'flex', alignItems: 'center', gap: '12px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.transform = 'translateY(-10px) scale(1.02)';
-                    el.style.background = 'rgba(0,212,255,0.1)';
-                    el.style.borderColor = 'rgba(0,212,255,0.4)';
-                    el.style.boxShadow = '0 20px 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.transform = 'translateY(0) scale(1)';
-                    el.style.background = 'rgba(255,255,255,0.03)';
-                    el.style.borderColor = 'rgba(255,255,255,0.08)';
-                    el.style.boxShadow = 'none';
-                  }}
-                >
-                  <span style={{ fontSize: '24px', flexShrink: 0 }}>{ind.icon}</span>
-                  <span style={{ fontSize: '15.5px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
-                  <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(0,212,255,0.5)', flexShrink: 0 }} />
-                </div>
+                <IndustryCard key={i} name={ind.name} icon={ind.icon} index={i} />
               ))}
             </div>
-            <div style={{ textAlign: 'center', marginTop: '48px' }}>
+            <div style={{ textAlign: 'center', marginTop: '64px' }}>
               <Link
                 href="/industries"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '17.5px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
-                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '14px'; }}
-                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '10px'; }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '18px', fontWeight: 600, color: '#6367FF', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '15px'; (e.currentTarget as HTMLElement).style.textShadow = '0 0 15px rgba(99, 103, 255, 0.4)'; }}
+                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '10px'; (e.currentTarget as HTMLElement).style.textShadow = 'none'; }}
               >
-                View All Industries <ArrowRight size={20} />
+                View All Industries <ArrowRight size={22} style={{ transition: 'transform 0.3s ease' }} />
               </Link>
             </div>
           </div>
@@ -352,7 +397,7 @@ export default function Home() {
         {/* CTA SECTION */}
         <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
           <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #4f46e5 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(139, 92, 246, 0.25)' }}>
+            <div style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
                 <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
