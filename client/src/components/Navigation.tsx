@@ -179,7 +179,9 @@ export default function Navigation() {
                   letterSpacing: '0.01em',
                   lineHeight: 1,
                   textTransform: 'uppercase',
-                  color: '#ffffff',
+                  background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
                   display: 'inline-block',
                 }}
                 className="hidden sm:inline font-display"

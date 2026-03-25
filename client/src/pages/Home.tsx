@@ -173,7 +173,7 @@ function PulsingBadge() {
 
 function HeroImage() {
   return (
-    <div style={{ transition: 'transform 0.1s ease-out', width: '100%', maxWidth: '1100px', margin: '0 auto' }}>
+    <div style={{ transition: 'transform 0.1s ease-out', width: '100%', maxWidth: '1300px', margin: '0 auto' }}>
       <div style={{ position: 'relative', width: '100%', animation: 'heroFloat 6s ease-in-out infinite' }}>
         {/* Orbital Rings - 3D Perspective */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(65deg) rotateY(15deg)', width: '140%', height: '140%', zIndex: 1, pointerEvents: 'none' }}>
@@ -347,7 +347,7 @@ export default function Home() {
                   <MagneticButton label="Our Services" href="/services" primary={false} />
                 </div>
               </div>
-              <div style={{ flex: '1 1 400px', maxWidth: '600px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto' }}>
+              <div style={{ flex: '1 1 400px', maxWidth: '1000px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-60px, 50px)' }}>
                 <HeroImage />
               </div>
             </div>
