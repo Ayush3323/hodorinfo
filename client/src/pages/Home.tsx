@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import StaticFrameContentLoop from '@/components/ui/StaticFrameContentLoop'; // Main Maydiv Component
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight, Sparkles } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 function useCountUp(target: number, duration = 1800, start = false) {
   const [count, setCount] = useState(0);
@@ -170,20 +171,33 @@ function HeroImage() {
       <div style={{ position: 'relative', width: '100%', animation: 'heroFloat 6s ease-in-out infinite' }}>
         {/* Orbital Rings - 3D Perspective */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(65deg) rotateY(15deg)', width: '140%', height: '140%', zIndex: 1, pointerEvents: 'none' }}>
+
           <div style={{ width: '100%', height: '100%', border: '1px solid rgba(99, 103, 255, 0.2)', borderRadius: '50%', animation: 'rotateFull 25s linear infinite' }} />
+
+          <div style={{ width: '100%', height: '100%', border: '1px solid rgba(99, 103, 255, 0.2)', borderRadius: '50%', animation: 'rotateFull 25s linear infinite' }}>
+            <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%, -50%)', width: '10px', height: '100%', pointerEvents: 'none' }}>
+              <div style={{ width: '12px', height: '12px', background: '#6367FF', borderRadius: '50%', boxShadow: '0 0 20px #6367FF', animation: 'heroFloat 3s ease-in-out infinite' }} />
+            </div>
+          </div>
+
         </div>
 
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(-45deg) rotateY(-25deg)', width: '120%', height: '120%', zIndex: 1, pointerEvents: 'none' }}>
-           <div style={{ width: '100%', height: '100%', border: '1px dashed rgba(132, 148, 255, 0.15)', borderRadius: '50%', animation: 'rotateFull 35s linear infinite reverse' }} />
+          <div style={{ width: '100%', height: '100%', border: '1px dashed rgba(132, 148, 255, 0.15)', borderRadius: '50%', animation: 'rotateFull 35s linear infinite reverse' }} />
         </div>
 
         {/* Shadow Glow */}
         <div style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.2) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
-        
+
         <div style={{ position: 'relative', zIndex: 2, WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
           <div style={{ position: 'relative', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
             <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)', maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)' }}>
-              <img src="/Image.png" alt="Hero representation" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover', opacity: 0.95, mixBlendMode: 'lighten', filter: 'blur(0.5px)' }} />
+              <DotLottieReact
+                src="https://lottie.host/28c689f9-8afe-4755-a364-887ae7803770/OGuhiwysGC.lottie"
+                loop
+                autoplay
+                style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.95, mixBlendMode: 'lighten', filter: 'blur(0.5px)' }}
+              />
               <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.04) 100%)', zIndex: 3 }} />
             </div>
           </div>
@@ -236,7 +250,7 @@ const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
-    scale: 1,
+    scale: 1.15,
     transition: {
       duration: 1.2,
       ease: [0.16, 1, 0.3, 1],
@@ -280,15 +294,15 @@ function IndustryCard({ name, icon, index }: { name: string; icon: string; index
       whileHover={{ y: -10 }}
     >
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '20px' }}>
-        <motion.div 
-          style={{ 
-            fontSize: '32px', 
-            background: 'rgba(99, 103, 255, 0.05)', 
-            width: '64px', 
-            height: '64px', 
-            borderRadius: '18px', 
-            display: 'flex', 
-            alignItems: 'center', 
+        <motion.div
+          style={{
+            fontSize: '32px',
+            background: 'rgba(99, 103, 255, 0.05)',
+            width: '64px',
+            height: '64px',
+            borderRadius: '18px',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
             border: '1px solid rgba(99, 103, 255, 0.1)',
             flexShrink: 0
@@ -296,7 +310,7 @@ function IndustryCard({ name, icon, index }: { name: string; icon: string; index
         >
           {icon}
         </motion.div>
-        
+
         <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#ffffff', margin: 0 }}>{name}</h3>
           <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(99, 103, 255, 0.5)', transition: 'transform 0.3s ease', transform: isHovered ? 'translateX(5px)' : 'none' }} />
@@ -356,7 +370,7 @@ export default function Home() {
           <ParticleCanvas />
           <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
             <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
@@ -364,7 +378,7 @@ export default function Home() {
                 style={{ flex: '1 1 600px', maxWidth: '1050px' }}
               >
                 <motion.div variants={itemVariants}><PulsingBadge /></motion.div>
-                <motion.h1 
+                <motion.h1
                   variants={itemVariants}
                   style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}
                 >
@@ -372,13 +386,13 @@ export default function Home() {
                   <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
                 </motion.h1>
-                <motion.p 
+                <motion.p
                   variants={itemVariants}
                   style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}
                 >
                   HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
                 </motion.p>
-                <motion.div 
+                <motion.div
                   variants={itemVariants}
                   style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}
                 >
@@ -386,12 +400,12 @@ export default function Home() {
                   <MagneticButton label="Our Services" href="/services" primary={false} />
                 </motion.div>
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
                 variants={imageVariants}
-                style={{ flex: '1 1 400px', maxWidth: '1000px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-60px, 50px)' }}
+                style={{ flex: '1 1 500px', maxWidth: '1200px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-40px, 40px)' }}
               >
                 <HeroImage />
               </motion.div>
@@ -442,7 +456,7 @@ export default function Home() {
         {/* CTA SECTION */}
         <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
           <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.2 }}
