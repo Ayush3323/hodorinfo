@@ -397,16 +397,20 @@ export default function Services() {
             padding-bottom: 40px !important;
           }
           .services-hero-h1 {
+            font-size: 30px !important;
             margin-bottom: 12px !important;
+          }
+          h2 {
+            font-size: 28px !important;
           }
           
           .cta-section { padding: 40px 0 80px !important; }
-          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
-          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card { border-radius: 30px !important; padding: 20px 24px !important; }
+          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
         }
       `}</style>
- domestic
+
       <Navigation />
 
       {/* Hero Section */}

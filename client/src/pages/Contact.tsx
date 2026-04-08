@@ -203,6 +203,8 @@ export default function Contact() {
 
         @media (max-width: 1024px) {
           .contact-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
+          .contact-hero-h1 { font-size: 30px !important; }
+          h2 { font-size: 28px !important; }
           .contact-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             text-align: justify !important;
@@ -216,7 +218,7 @@ export default function Contact() {
 
           .cta-section { padding: 40px 0 80px !important; }
           .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
-          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
         }
       `}</style>
@@ -236,7 +238,7 @@ export default function Contact() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Let's Connect" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 variants={itemVariants} className="premium-gradient-text contact-hero-h1" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Get in Touch
             </motion.h1>
             <motion.p className="contact-hero-para" variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>

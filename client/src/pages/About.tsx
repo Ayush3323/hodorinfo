@@ -241,7 +241,13 @@ export default function About() {
 
         @media (max-width: 1024px) {
           .about-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
-          .about-hero-h1 { margin-bottom: 12px !important; }
+          .about-hero-h1 { 
+            font-size: 30px !important;
+            margin-bottom: 12px !important; 
+          }
+          h2 {
+            font-size: 28px !important; 
+          }
           .about-hero-para, .about-desc {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             text-align: justify !important;
@@ -285,7 +291,7 @@ export default function About() {
 
           .cta-section { padding: 40px 0 80px !important; }
           .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
-          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
         }
       `}</style>

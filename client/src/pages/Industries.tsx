@@ -320,7 +320,13 @@ export default function Industries() {
 
         @media (max-width: 1024px) {
           .industries-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
-          .industries-hero-h1 { margin-bottom: 12px !important; }
+          .industries-hero-h1 { 
+            font-size: 30px !important;
+            margin-bottom: 12px !important; 
+          }
+          h2 {
+            font-size: 28px !important;
+          }
           .industries-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             text-align: justify !important;
@@ -364,6 +370,7 @@ export default function Industries() {
             text-justify: inter-word;
           }
 
+          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
 
           .choose-hero-para {

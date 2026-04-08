@@ -148,7 +148,7 @@ function StarField() {
 
 function PulsingBadge() {
   return (
-    <div className="badge-container" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.08)', border: '1px solid rgba(99, 103, 255, 0.2)', marginBottom: '32px', backdropFilter: 'blur(8px)' }}>
+    <div className="badge-container" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.08)', border: '1px solid rgba(99, 103, 255, 0.2)', marginBottom: '32px' }}>
       <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6367FF', position: 'relative', flexShrink: 0 }}>
         <div style={{ position: 'absolute', inset: -4, borderRadius: '50%', background: '#6367FF', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
       </div>
@@ -179,19 +179,19 @@ function HeroImage() {
         </div>
 
         {/* Shadow Glow */}
-        <div className="hero-glow" style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.2) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
+        <div className="hero-glow" style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.15) 0%, transparent 70%)', zIndex: 0, pointerEvents: 'none' }} />
 
-        <div style={{ position: 'relative', zIndex: 2, WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
-          <div style={{ position: 'relative', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
-            <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)', maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 90%)' }}>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden' }}>
               <DotLottieReact
                 src="https://lottie.host/28c689f9-8afe-4755-a364-887ae7803770/OGuhiwysGC.lottie"
                 loop
                 autoplay
                 className="hero-lottie"
-                style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.95, mixBlendMode: 'lighten', filter: 'blur(0.5px)' }}
+                style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.95, mixBlendMode: 'lighten' }}
               />
-              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.04) 100%)', zIndex: 3 }} />
+              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 3 }} />
             </div>
           </div>
         </div>
