@@ -378,8 +378,7 @@ export default function Home() {
           .badge-container div:first-child { width: 6px !important; height: 6px !important; }
           
           .hero-para { 
-            text-align: justify !important; 
-            text-justify: inter-word; 
+            text-align: center !important; 
             max-width: 100% !important; 
             margin-left: auto; 
             margin-right: auto;
@@ -406,8 +405,7 @@ export default function Home() {
           .competencies-header p { 
             font-size: clamp(14px, 4.2vw, 16px) !important; 
             line-height: 1.6 !important; 
-            text-align: justify !important;
-            text-justify: inter-word;
+            text-align: center !important;
             max-width: 100% !important; 
           }
 

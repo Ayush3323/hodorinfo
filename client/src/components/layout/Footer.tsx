@@ -17,52 +17,48 @@ export default function Footer() {
 
         <div className="max-w-[1500px] mx-auto">
 
-          {/* Centered Logo Above Grid - Shorter Margin */}
-          <div className="flex flex-col items-center justify-center mb-10 mt-2">
-            <div className="flex items-center gap-4 group cursor-default">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500"
-                style={{
-                  background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
-                  boxShadow: '0 0 24px rgba(99, 103, 255, 0.45)',
-                }}
-              >
-                <span className="text-white font-bold text-2xl font-display">H</span>
+          {/* MAIN BROAD GRID: Row wrap layout for better symmetry */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 mb-16 pt-6">
+
+            {/* Column 1: Brand & Contact */}
+            <div className="col-span-2 lg:col-span-1 space-y-8">
+              <div className="flex items-center gap-4 group cursor-default">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
+                    boxShadow: '0 0 24px rgba(99, 103, 255, 0.45)',
+                  }}
+                >
+                  <span className="text-white font-bold text-2xl font-display">H</span>
+                </div>
+                <span
+                  className="font-extrabold text-3xl tracking-[0.01em] uppercase font-display"
+                  style={{
+                    background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    display: 'inline-block',
+                  }}
+                >
+                  HodorInfo
+                </span>
               </div>
-              <span
-                className="font-extrabold text-3xl tracking-[0.01em] uppercase font-display"
-                style={{
-                  background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  display: 'inline-block',
-                }}
-              >
-                HodorInfo
-              </span>
-            </div>
-          </div>
-
-          {/* MAIN BROAD GRID: 4 Columns with Dividers - Shorter Margin */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-0 mb-10 pt-6">
-
-            {/* Column 1: Contact Info */}
-            <div className="md:border-r border-white/10 px-6 md:px-12 lg:px-16 space-y-4">
-              <h4 className="text-white font-bold text-sm md:text-base uppercase tracking-[0.2em] mb-6 text-center md:text-left">Contact Info</h4>
+              
               <div className="space-y-4">
-                {/* Interactive Address Block */}
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-4 group cursor-pointer">
-                  <MapPin className="text-white/40 mt-0.5 flex-shrink-0 group-hover:text-white transition-colors" size={18} />
+                <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em] mb-4">Contact Info</h4>
+                <div className="flex items-start gap-4 group cursor-pointer">
+                  <MapPin className="text-white/40 mt-1 flex-shrink-0 group-hover:text-white transition-colors" size={18} />
                   <p className="text-white/40 text-sm md:text-base leading-relaxed font-medium group-hover:text-white transition-colors">
                     Innovation Hub, Tech City,<br />
                     Faridabad, HR 121004
                   </p>
                 </div>
-                <a href="tel:+1234567890" className="flex flex-col md:flex-row items-center md:items-start gap-4 group">
+                <a href="tel:+1234567890" className="flex items-center gap-4 group">
                   <Phone className="text-white/40 flex-shrink-0 group-hover:text-white transition-colors" size={18} />
                   <span className="text-white/40 text-sm md:text-base font-medium group-hover:text-white transition-colors">+1 (234) 567-890</span>
                 </a>
-                <a href="mailto:info@hodorinfo.com" className="flex flex-col md:flex-row items-center md:items-start gap-4 group">
+                <a href="mailto:info@hodorinfo.com" className="flex items-center gap-4 group">
                   <Mail className="text-white/40 flex-shrink-0 group-hover:text-white transition-colors" size={18} />
                   <span className="text-white/40 text-sm md:text-base font-medium group-hover:text-white transition-colors">info@hodorinfo.com</span>
                 </a>
@@ -70,8 +66,8 @@ export default function Footer() {
             </div>
 
             {/* Column 2: Quick Links */}
-            <div className="md:border-r border-white/10 px-6 md:px-12 lg:px-16 text-center md:text-left">
-              <h4 className="text-white font-bold text-sm md:text-base uppercase tracking-[0.2em] mb-8 text-center md:text-left">Quick Links</h4>
+            <div className="space-y-8">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em] mb-4">Quick Links</h4>
               <ul className="space-y-4 text-sm md:text-base font-medium">
                 {['Home', 'Services', 'Industries', 'About'].map((item) => (
                   <li key={item}>
@@ -84,8 +80,8 @@ export default function Footer() {
             </div>
 
             {/* Column 3: Resources */}
-            <div className="md:border-r border-white/10 px-6 md:px-12 lg:px-16 text-center md:text-left">
-              <h4 className="text-white font-bold text-sm md:text-base uppercase tracking-[0.2em] mb-8 text-center md:text-left">Resources</h4>
+            <div className="space-y-8">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em] mb-4">Resources</h4>
               <ul className="space-y-4 text-sm md:text-base font-medium text-white/40">
                 <li><a href="https://blog.hodorinfo.com" className="hover:text-white transition-all hover:translate-x-1 inline-block">Blog</a></li>
                 <li><Link href="/contact" className="hover:text-white transition-all hover:translate-x-1 inline-block">Contact</Link></li>
@@ -95,9 +91,9 @@ export default function Footer() {
             </div>
 
             {/* Column 4: Follow Us */}
-            <div className="px-6 md:px-12 lg:px-16 text-center md:text-left">
-              <h4 className="text-white font-bold text-sm md:text-base uppercase tracking-[0.2em] mb-8 text-center md:text-left">Follow Us</h4>
-              <div className="flex gap-8 items-center justify-center md:justify-start">
+            <div className="space-y-8">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em] mb-4">Follow Us</h4>
+              <div className="flex gap-6 items-center">
                 <a href="#" className="text-white/40 hover:text-white transition-all hover:-translate-y-2"><Linkedin size={22} /></a>
                 <a href="#" className="text-white/40 hover:text-white transition-all hover:-translate-y-2"><Twitter size={22} /></a>
                 <a href="#" className="text-white/40 hover:text-white transition-all hover:-translate-y-2"><Github size={22} /></a>
@@ -105,20 +101,26 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* BOTTOM COPYRIGHT - COMPACT */}
-          <div className="flex flex-col items-center justify-center space-y-2 pt-6">
-            <p
-              className="uppercase tracking-[0.3em] text-center"
-              style={{ fontSize: '13px', lineHeight: '1.2', color: 'rgba(255, 255, 255, 0.6)' }}
-            >
-              © {currentYear} HodorInfo. All rights reserved.
-            </p>
-            <p
-              className="uppercase tracking-[0.15em] hidden md:block text-center"
-              style={{ fontSize: '11px', marginTop: '4px', color: 'rgba(255, 255, 255, 0.4)' }}
-            >
-              Crafting Digital Excellence for Enterprise Innovation
-            </p>
+          {/* BOTTOM COPYRIGHT - COMPACT & BALANCED */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-white/5">
+            <div className="flex flex-col items-center md:items-start space-y-2">
+              <p
+                className="uppercase tracking-[0.3em]"
+                style={{ fontSize: '13px', lineHeight: '1.2', color: 'rgba(255, 255, 255, 0.6)' }}
+              >
+                © {currentYear} HodorInfo. All rights reserved.
+              </p>
+              <p
+                className="uppercase tracking-[0.15em] hidden md:block"
+                style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.4)' }}
+              >
+                Crafting Digital Excellence for Enterprise Innovation
+              </p>
+            </div>
+            <div className="flex gap-6 items-center">
+               <Link href="/privacy" className="text-[11px] uppercase tracking-widest text-white/30 hover:text-white transition-colors">Privacy</Link>
+               <Link href="/terms" className="text-[11px] uppercase tracking-widest text-white/30 hover:text-white transition-colors">Terms</Link>
+            </div>
           </div>
 
         </div>

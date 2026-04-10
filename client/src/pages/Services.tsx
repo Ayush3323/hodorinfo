@@ -373,8 +373,7 @@ export default function Services() {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             line-height: 1.6 !important;
             margin-bottom: 32px !important;
-            text-align: justify !important;
-            text-justify: inter-word;
+            text-align: center !important;
           }
           .features-list-row {
             grid-template-columns: 1fr 1fr !important;
@@ -387,10 +386,9 @@ export default function Services() {
           .features-list-row li div { width: 4px !important; height: 4px !important; margin-top: 5px !important; }
           .services-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
-            text-align: justify !important;
+            text-align: center !important;
             max-width: 100% !important;
             line-height: 1.6 !important;
-            text-justify: inter-word;
           }
           .services-hero-section {
             padding-top: 80px !important;
@@ -402,6 +400,7 @@ export default function Services() {
           }
           h2 {
             font-size: 26px !important;
+            text-align: center !important;
           }
           
           .cta-section { padding: 40px 0 80px !important; }

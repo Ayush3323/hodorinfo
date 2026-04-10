@@ -326,13 +326,13 @@ export default function Industries() {
           }
           h2 {
             font-size: 26px !important;
+            text-align: center !important;
           }
           .industries-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
-            text-align: justify !important;
+            text-align: center !important;
             max-width: 100% !important;
             line-height: 1.6 !important;
-            text-justify: inter-word;
           }
           
           .industry-section { 
@@ -366,8 +366,7 @@ export default function Industries() {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             line-height: 1.6 !important;
             margin-bottom: 32px !important;
-            text-align: justify !important;
-            text-justify: inter-word;
+            text-align: center !important;
           }
 
           .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
@@ -375,8 +374,7 @@ export default function Industries() {
 
           .choose-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
-            text-align: justify !important;
-            text-justify: inter-word;
+            text-align: center !important;
             margin-bottom: 40px !important;
           }
           .choose-grid {

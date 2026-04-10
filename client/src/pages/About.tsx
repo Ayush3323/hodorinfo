@@ -247,13 +247,13 @@ export default function About() {
           }
           h2 {
             font-size: 26px !important; 
+            text-align: center !important;
           }
           .about-hero-para, .about-desc {
             font-size: clamp(14px, 4.2vw, 16px) !important;
-            text-align: justify !important;
+            text-align: center !important;
             max-width: 100% !important;
             line-height: 1.6 !important;
-            text-justify: inter-word;
           }
           
           .grid-2-col {
@@ -285,14 +285,19 @@ export default function About() {
             line-height: 1.6 !important; 
             color: rgba(255,255,255,0.7) !important;
             width: 100%;
-            text-align: justify !important;
-            text-justify: inter-word;
+            text-align: center !important;
           }
 
           .cta-section { padding: 40px 0 80px !important; }
           .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
           .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+
+          .mission-column {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+          }
         }
       `}</style>
 
@@ -324,7 +329,7 @@ export default function About() {
       <section style={{ position: 'relative', zIndex: 1, padding: '100px 0', overflow: 'hidden' }}>
         <div className="container">
           <div style={{ display: 'flex', gap: '80px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '140px' }}>
-            <div style={{ flex: '1 1 500px', position: 'relative' }}>
+            <div className="mission-column" style={{ flex: '1 1 500px', position: 'relative' }}>
 
               {/* Text content from left */}
               <motion.div
